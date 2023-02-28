@@ -2,9 +2,9 @@ package com.example.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -12,18 +12,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val user: EditText = findViewById(R.id.user)
-        val pass: EditText = findViewById(R.id.pass)
+        val entryEmail: EditText = findViewById(R.id.entryEmail)
+        val enterPass: EditText = findViewById(R.id.entryPass)
         val login: Button = findViewById(R.id.login)
+        val back: ImageView = findViewById(R.id.backflash)
 
-        val myUser = "Leila"
-        val myPass = 2323
+        back.setOnClickListener {
+            onBackPressed()
+        }
 
         login.setOnClickListener {
-            if (user.text.toString().lowercase() == myUser.lowercase() && pass.text.toString().toInt() == myPass) {
+
+            val correctEmail = intent.getStringExtra("email")!!
+            val correctPass = intent.getStringExtra("pass")!!
+
+            if (entryEmail.text.toString().lowercase() == correctEmail.lowercase()) {
                 Toast.makeText(this, "Succes Full", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Wrong", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, " Wrong", Toast.LENGTH_LONG).show()
+            }
+            if (enterPass.text.toString().lowercase() == correctPass.lowercase()) {
+                Toast.makeText(this, "Succes Full", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, " Wrong", Toast.LENGTH_LONG).show()
             }
         }
 
